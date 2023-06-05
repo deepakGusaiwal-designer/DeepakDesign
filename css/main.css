@@ -31,6 +31,10 @@
     --spacing-sx: 1rem;
   }
 }
+main {
+  overflow-x: hidden;
+}
+
 .loading {
   overflow: hidden;
 }
