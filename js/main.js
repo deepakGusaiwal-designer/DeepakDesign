@@ -1,6 +1,30 @@
 (function () {
+	setTimeout(function () {
+	  document.body.classList.remove("loading");
+	}, 5000);
+	setTimeout(function () {
+	  document.body.classList.remove("loading");
+	  $(".loader").addClass("loadingComplete");
+	}, 4000);
 
+	$(".count").each(function () {
+		$(this)
+		.prop("Counter", 0)
+		.animate(
+			{
+			Counter: $(this).text(),
+			},
+			{
+			duration: 3000,
+			easing: "swing",
+			step: function (now) {
+				$(this).text(Math.ceil(now));
+			},
+			}
+		);
+	});
 
+	
   $(".work-text-content .text-block").hover(function () {
     $(this).parent().parent().parent().toggleClass("mask-hover-content");
   }); 
@@ -37,7 +61,26 @@ const editCursor = (e) => {
 })();
 
 
+const text = document.querySelector(".circular-text .text");
+const rotateText = new CircleType(text).radius(45);
 
+gsap.set("#scrollMore", { xPercent: -50 });
+
+var rotate = gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: "#wrap",
+      pin: true,
+      scrub: 0.2,
+      start: "top top",
+      end: "+=10000",
+    },
+  })
+  .to("#scrollMore", {
+    rotation: 360 * 5,
+    duration: 1,
+    ease: "none",
+  });
 
 
 
@@ -55,8 +98,8 @@ const editCursor = (e) => {
     ro1 = 0,
     ro2 = 0,
     canvas = "#earth",
-    // color = "#000000",
-    fogC = "#CCCCCC",
+    color = "#ffffff",
+    fogC = "#fff",
     T_earth = "https://mapplix.github.io/earth/earth.png";
 
 	var camera, scene, renderer;
@@ -98,7 +141,7 @@ varying float vBright;\n\
 '			+sh.fragmentShader.replace('#include <alphamap_fragment>', '\
 	#include <alphamap_fragment>\n\
 	vec3 d = fwidth( vCenter );\n\
-	vec3 a3 = smoothstep( vec3(0.0), d * 1.4, vCenter+0.4*d-1.0/fogDepth );\n\
+	vec3 a3 = smoothstep( vec3(0.0), d * 1.4, vCenter+0.4*d-0.5/fogDepth );\n\
 	float scale = dot(normalize(vViewPosition), vNormal);\n\
 	scale = 1.0-scale*scale;\n\
 	float dist = distance(vPos, vV0.xyz/vCenter.x);\n\
@@ -107,7 +150,7 @@ varying float vBright;\n\
 	float b3 = smoothstep(1.5, 1.8, dist-1.5*scale*scale );\n\
 	float edgeFactorTri=min(b3,min( min( a3.x, a3.y ), a3.z ));\n\
 	diffuseColor.a *= mix( 1.0,  0.0, edgeFactorTri );\n\
-	float dissipation='+(posZ+.5*R+.01)+';\n\
+	float dissipation='+(posZ+.1*R+.01)+';\n\
 	diffuseColor.a *= smoothstep( 20.0,  0.0, fogDepth-dissipation );\n\
 \			').replace('	#include <fog_fragment>', '\
 	float lVc=length(vCenter);\n\
@@ -117,21 +160,21 @@ varying float vBright;\n\
 \			');
 			//console.log(sh, sh.vertexShader, sh.fragmentShader);
 		},
-		roughness: 0,
+		roughness: .0,
 		metalness: .984,
 		envMapIntensity:0.1,
 		emissive: 0.5,
-		refractionRatio: -0.0,
+		refractionRatio: 5,
 		transparent: true, 
-		alphaTest: 0.9
+		alphaTest: 0.7
 	});//, opacity: 0
 	Wmaterial.color.set(fogC);
-	Wmaterial.side=1;
-	Wmaterial.extensions={derivatives: 1};
+	Wmaterial.side=0;
+	Wmaterial.extensions={derivatives: 0};
 	var geometry = new THREE.IcosahedronGeometry(R,3);//OctahedronGeometry
 
 	for ( var i = 0; i < geometry.vertices.length; i ++ ) {
-		geometry.vertices[i].applyEuler(new THREE.Euler(Math.random()*.06,Math.random()*.06,Math.random()*.06))
+		geometry.vertices[i].applyEuler(new THREE.Euler(Math.random()*.09,Math.random()*.01,Math.random()*.01))
 	}
 	var bGeometry=(new THREE.BufferGeometry).fromGeometry(geometry);
 	var position = bGeometry.attributes.position;
@@ -142,7 +185,7 @@ varying float vBright;\n\
 	for ( var i = 0, l = position.count; i < l; i ++ ) {
 		var c =centers[i]= i % 3, j=(i-c)/3;
 		brights[i]=0;
-		if (i<vCount) points[i]={siblings:[], distances:[], indexes:[], brightness:1, v:0, a:0, f:0, dr:0, r:1};
+		if (i<vCount) points[i]={siblings:[], distances:[], indexes:[], brightness:0, v:0, a:1, f:0, dr:0, r:1};
 	}
 	function addSiblings(a,b,one){
 		if (points[a].siblings.indexOf(points[b])<0) {
@@ -176,13 +219,13 @@ varying float vBright;\n\
 	bGeometry.addAttribute( 'bright', new THREE.BufferAttribute( brights, 1 ) );
 
 	var Ematerial = Wmaterial.clone();
-	Ematerial.alphaMap=Emap; Ematerial.transparent=false; Ematerial.side=0;
+	Ematerial.alphaMap=Emap; Ematerial.transparent=true; Ematerial.side=0;
 	var cubeCamera = new THREE.CubeCamera( 1, 2*R, 256 );
 	cubeCamera.position.z=.47*R
 	Ematerial.envMap=cubeCamera.renderTarget.texture;
 	Ematerial.envMap.minFilter = THREE.LinearMipMapLinearFilter; 
 	Ematerial.envMap.mapping=THREE.CubeReflectionMapping;
-	var Earth = new THREE.Mesh(new THREE.IcosahedronGeometry(R*.77, 3), Ematerial)
+	var Earth = new THREE.Mesh(new THREE.IcosahedronGeometry(R*.99, 3), Ematerial)
 	var wGeometry=geometry.clone();
 	particles = new THREE.Group();
 	world = new THREE.Group();
@@ -192,13 +235,13 @@ varying float vBright;\n\
 	world.add(particles);
 	scene.add(world);
 	// POSITIONS :
-	var posZ = 1500; //distance to camera
+	var posZ = 1700; //distance to camera
 	//scene.position.set(-12,54,0);
 
 	//camera.position.y=camera.position.z=2000
 
 	scene.fog=new THREE.Fog(fogC, posZ-R/2, posZ+R);
-	hLight=new THREE.HemisphereLight('#fff', 0, 23)
+	hLight = new THREE.HemisphereLight("#364177", 0, 25);
 	world.add(hLight);
 	hLight.position.set(0,0,1)
 
@@ -206,7 +249,7 @@ varying float vBright;\n\
 	var dx, dy=dx=x0=y0=0, active, abc=['a', 'b', 'c'], movedPoints=[], activeF=[], ready,
 		raycaster=new THREE.Raycaster(),
 		mouse = new THREE.Vector2();
-	window.getWpos=function(){
+		window.getWpos=function(){
 		return [scene.position, scene.rotation, camera]
 	}
 	function interact() {
@@ -234,9 +277,10 @@ varying float vBright;\n\
 		interact();
 	};
 	onpointermove=onmousemove=ontouchmove=function(e){
-		if (!active || !ready) return
-		if (!e.buttons) {
-		active=false;
+		// if (active || !ready) return
+		if (active || !ready) return
+		if (e.buttons) {
+		active=true;
 		return;
 		}
 		var touches=e.changedTouches;
@@ -247,19 +291,19 @@ varying float vBright;\n\
 		}
 		else {e.preventDefault()};
 		//if (e.type==mousemove && !e.which) return
-		dx=(5*dx+x0-(x0=e.clientX))/6;
-		dy=(5*dy+y0-(y0=e.clientY))/6;
+		dx=(10*dx+x0-(x0=e.clientX))/12;
+		dy=(10*dy+y0-(y0=e.clientY))/12;
 		// console.log(e.type, active.identifier, dx, x0)
 		interact();
-		ready=0;
+		ready=1;
 	};
-	onmouseup=onpointerup=ontouchup=ontouchcancel=onpointercancel=onblur=function(e){
-		active=false;
-		//console.log()
-		interact();
-	}
+		onmouseup=onpointerup=ontouchup=ontouchcancel=onpointercancel=onblur=function(e){
+			active=false;
+			//console.log()
+			interact();
+		}
 
-	var t0=new Date()*1, dMax=80, dMin=1000/33, dT=1000/50, af, Pactive=[], m=3000000, k=400, k0=1, f0=.01, fv=1000,
+		var t0=new Date()*1, dMax=80, dMin=1000/33, dT=1000/50, af, Pactive=[], m=3000000, k=400, k0=1, f0=.01, fv=1000,
 		posArr=bGeometry.attributes.position.array,
 		pUp=0, pDn=[], flTimer=[], vecTest=new THREE.Vector3(), transStart, pLast, transactions=[];
 	requestAnimationFrame(function animate() {
@@ -327,7 +371,8 @@ varying float vBright;\n\
 
 		dx*=(1-.03*dd);
 		dy*=(1-.03*dd);
-		ro2-=dx*.002;//+(W/2-y0)*(W/2-x0)*dy/vMin*.00004;
+		ro2-=dx*.002;
+		//+(W/2-y0)*(W/2-x0)*dy/vMin*.00004;
 		world.rotation.x-=dy*.002;
 		var sro=world.rotation.x*=.92;
 		Net.applyMatrix(new THREE.Matrix4().getInverse(particles.matrixWorld).multiply(

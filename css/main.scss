@@ -1,7 +1,7 @@
 :root {
     --primary-font: 'Plus Jakarta Sans', sans-serif;
     --dark: #0d0d0d;
-    --text-color: #f4a950;
+    --text-color: #b7ab98;
     --red: #eb5939;
 }
 
@@ -19,9 +19,69 @@
         --spacing-sx: 3rem;
     }
 }
+@media(min-width: 320px) {
+    :root {
+        --screen-x: 2vw;
+        --border-size-large: 1px;
+        --spacing-supper: 29.0625rem;
+        --spacing-xl: 18.75rem;
+        --spacing-xlx: 12.5rem;
+        --spacing-lg: 5rem;
+        --spacing-md: 2.5rem;
+        --spacing-sm: 1rem;
+        --spacing-sx: 1rem;
+    }
+}
 
 
 // Mixin start
+
+.loading {
+    overflow: hidden;
+}
+.loader {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    background: #000;
+    font-size: 4vw;
+    font-weight: 600;
+    transition: all 0.5s ease-in-out;
+    p {
+        margin: 0;
+        text-align: right;
+        padding-right: 2vw;
+        transform: translateY(85vh);
+        animation: loaderAnimation 3s linear 1;
+        // opacity: 0;
+    }
+}
+.loader {
+    &.loadingComplete {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+// @keyframes loaderAnimation {
+//   0% {
+//     opacity: 0;
+//     }
+//   10% {
+//     opacity: 1;
+//     }
+//     75% {
+//     opacity: 1;
+//   }
+//     100% {
+//     opacity: 1;
+//   }
+// }
 
 @mixin square($size, $sizeH, $radius: 0) {
   width: $size;
@@ -32,9 +92,14 @@
 }
 
 // Mixin end
+
+html {
+    user-select: none;
+}
+
 body {
     font-family: var(--primary-font);
-    background: var(--dark);
+    background: #000;
     color: #fff;
     line-height: 1.5;
     padding: 0;
@@ -98,7 +163,7 @@ ul {
     }
 
     &:before {
-      color: var(--text-color);
+      color: var(--red);
       transition-delay: calc( 0.02s * ( var(--char-index)) );
       visibility: visible;
     }
@@ -149,7 +214,7 @@ header {
             display: block;
             padding: 15px;
         }
-        img {
+        img, svg {
             height: 70px;
         }
     }
@@ -165,6 +230,16 @@ header {
                     font-weight: 600;
                     text-decoration: none;
                     line-height: 1;
+                }
+            }
+        }
+        @media (max-width: 1199px) {
+            ul {
+                // flex-direction: column;
+                gap: 5vh;
+                li a {
+                    text-align:right;
+                    font-size: 14px;
                 }
             }
         }
@@ -222,8 +297,12 @@ header {
         z-index: 1;
         pointer-events: none;
         h1 {
-            font-size: 5rem;
+            font-size: 6rem;
             line-height: 6rem;
+            @media (max-width: 1199px) {
+                font-size: 3em;
+                line-height: 1.2em;
+            }
             span {
                 color: var(--text-color)
             }
@@ -236,6 +315,63 @@ header {
             font-weight: 400;
         }
     }
+}
+
+#scrollMore {
+    position: fixed; 
+    bottom: 4rem;
+    right: var(--spacing-sx);
+    z-index: 1;
+    pointer-events: none;
+    @media (max-width: 1199px) {
+        display: none;
+    }
+}
+
+.circular-text{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 20s linear infinite;
+  -moz-animation: rotating 20s linear infinite;
+  -ms-animation: rotating 20s linear infinite;
+  -o-animation: rotating 20s linear infinite;
+  animation: rotating 20s linear infinite;
 }
 
 .social-block {
@@ -277,9 +413,13 @@ header {
     justify-content: center;
     h2 {
         font-size: 2.8rem;
-        line-height: 5rem;
+        line-height: 4rem;
         font-weight: 500;
         color: #fff;
+        @media (max-width: 1199px) {
+            font-size: 1.5em;
+            line-height: 1.5em;
+        }
     }
 }
 
@@ -324,9 +464,17 @@ header {
 
 .work-section {
     padding: var(--spacing-lg) 0;
-    .main-container {
-        .title-block {
-            padding-left: var(--spacing-lg);
+    position: relative;
+    @media (min-width: 1199px) {
+        .main-container {
+            .title-block {
+                padding-left: var(--spacing-lg);
+            }
+        }
+    }
+    @media (max-width: 1199px) {
+        .main-container .title-block {
+            padding: 0 15px;
         }
     }
 }
@@ -346,7 +494,7 @@ header {
             top: 50%;
             left: 0;
             transform: translateY(-50%);
-            background: var(--red);
+            background: var(--text-color);
             transition: all 0.3s ease-in-out;
             pointer-events: none;
         }
@@ -367,35 +515,56 @@ header {
         }
         .work-content-block {
             display: flex;
-            padding-left: var(--spacing-lg);
             color: rgba(#fff, 0.8);
             position: relative;
+            @media (max-width: 1199px) {
+                padding: 0 15px;
+                gap: 15px;
+                .work-years {
+                    min-width: 60px;
+                }
+                h5 {
+                    font-size: 3vh;
+                    line-height: normal;
+                    font-weight: 600;
+                }
+            }
+            @media (min-width: 1199px) {
+                padding-left: var(--spacing-lg);
+            }
             * {
                 margin: 0;
             }
-            h4 {
-                font-size: 3rem;
-                line-height: normal;
-                font-weight: 600;
-            }
-            .work-years {
-                width: 20%;
-            }
-            .work-text-content {
-                width: 75%;
-                .text-block {
-                    display: inline-block
-                }
+            @media (min-width: 1199px) {
                 h5 {
-                    font-size: 2.2rem;
-                    font-weight: 800;
-                    line-height: normal;
-                    margin-bottom: 10px;
+
                 }
-                h6 {
-                    font-size: 1rem;
-                    font-weight: 300;
+            }
+            @media (min-width: 1199px) {
+                h4 {
+                    font-size: 3rem;
                     line-height: normal;
+                    font-weight: 600;
+                }
+                .work-years {
+                    width: 20%;
+                }
+                .work-text-content {
+                    width: 75%;
+                    .text-block {
+                        display: inline-block
+                    }
+                    h5 {
+                        font-size: 2.2rem;
+                        font-weight: 800;
+                        line-height: normal;
+                        margin-bottom: 10px;
+                    }
+                    h6 {
+                        font-size: 1rem;
+                        font-weight: 300;
+                        line-height: normal;
+                    }
                 }
             }
         }
@@ -431,6 +600,11 @@ header {
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: -0.3rem;
+        @media (max-width: 1199px) {
+            font-size: 10vw;
+            letter-spacing: 0;
+            margin: 2em 0;
+        }
     }
 }
 
@@ -455,6 +629,15 @@ header {
         text-transform: uppercase;
         position: relative;
         text-decoration: none;
+    }
+    @media (max-width: 1199px) {
+        li {
+            margin-bottom: 4vh;
+            a {
+                font-size: 8vw;
+            }
+        }
+        
     }
 }
 
