@@ -4,6 +4,7 @@
 	}, 5000);
 	setTimeout(function () {
 	  document.body.classList.remove("loading");
+	  document.body.classList.add("page-ready");
 	  $(".loader").addClass("loadingComplete");
 	}, 4000);
 
@@ -64,7 +65,7 @@ const editCursor = (e) => {
 const text = document.querySelector(".circular-text .text");
 const rotateText = new CircleType(text).radius(45);
 
-gsap.set("#scrollMore", { xPercent: -50 });
+gsap.set(".circular-text", { xPercent: -50 });
 
 var rotate = gsap
   .timeline({
@@ -76,13 +77,31 @@ var rotate = gsap
       end: "+=10000",
     },
   })
-  .to("#scrollMore", {
+  .to(".circular-text", {
     rotation: 360 * 5,
     duration: 1,
     ease: "none",
   });
 
 
+$(document).on('click', 'a[href^="#"]', function (event) {
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+    }, 1000);
+});
+
+$(document).ready(function () {
+  $("#backToTop").hide();
+});
+// var backToTop = $('.herozone').height();
+$('body').scroll(function () {
+  if (document.body.scrollTop > 929) {
+    $("#backToTop").show(200);
+  } else {
+    $("#backToTop").hide(200);
+  }
+});
 
 
 
@@ -241,7 +260,7 @@ varying float vBright;\n\
 	//camera.position.y=camera.position.z=2000
 
 	scene.fog=new THREE.Fog(fogC, posZ-R/2, posZ+R);
-	hLight = new THREE.HemisphereLight("#364177", 0, 25);
+	hLight = new THREE.HemisphereLight("#3452ff", 0, 25);
 	world.add(hLight);
 	hLight.position.set(0,0,1)
 
@@ -284,7 +303,7 @@ varying float vBright;\n\
 		return;
 		}
 		var touches=e.changedTouches;
-		if (active.identifier!==undefined && e.type!='touchmove') return;
+		// if (active.identifier!==undefined && e.type!='touchmove') return;
 		if (touches) {
 			if (touches[0].identifier==active.identifier) e=touches[0]
 			else return
