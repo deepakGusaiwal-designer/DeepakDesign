@@ -26,8 +26,8 @@
 	});
 
 	
-  $(".work-text-content .text-block").hover(function () {
-    $(this).parent().parent().parent().toggleClass("mask-hover-content");
+  $(".work-mask-row").hover(function () {
+    $(this).toggleClass("mask-hover-content");
   }); 
 
   
@@ -70,7 +70,7 @@ gsap.set(".circular-text", { xPercent: -50 });
 var rotate = gsap
   .timeline({
     scrollTrigger: {
-      trigger: "#wrap",
+    //   trigger: "#wrap",
       pin: true,
       scrub: 0.2,
       start: "top top",
@@ -105,6 +105,104 @@ $('body').scroll(function () {
 
 
 
+
+    // var swiper = new Swiper(".mySwiper", {
+	// 	slidesPerView: 2,
+	// 	spaceBetween: 30,
+	// 	centeredSlides: true,
+	// 	loop: true,
+	// 	effect: "coverflow",
+	// 	pagination: {
+	// 		el: ".swiper-pagination",
+	// 		clickable: true,
+	// 	},
+	// 	coverflowEffect: {
+	// 	rotate: 45,
+	// 	stretch: 10,
+	// 	depth: 0,
+	// 	modifier: 2,
+	// 	slideShadows: false,
+	// 	},
+    // });
+
+
+
+// var swiper = new Swiper(".mySwiper", {
+//   effect: "coverflow",
+//   centeredSlides: true,
+//   autoplay: {
+//     delay: 5000,
+//     disableOnInteraction: false,
+//   },
+//   loop: true,
+//   slidesPerView: "2",
+//   coverflowEffect: {
+//     rotate: 5,
+//     stretch: 100,
+//     depth: 0,
+//     modifier: 1,
+//     slideShadows: false,
+//   },
+//   navigation: {
+//     prevEl: ".swiper-button-prev",
+//     nextEl: ".swiper-button-next",
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: false,
+//   },
+// });
+
+
+    // var swiper = new Swiper(".mySwiper", {
+    //   effect: "coverflow",
+    //   grabCursor: true,
+    //   centeredSlides: true,
+    //   slidesPerView: "auto",
+	//   loop: "true",
+	//   speed: 1000,
+	//   autoplay: {
+	// 	delay: 3000,
+	//   },
+    //   coverflowEffect: {
+    //     rotate: 0,
+    //     stretch: 400,
+    //     depth: 500,
+    //     modifier: 1,
+    //     slideShadows: false,
+    //   },
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //   },
+    // });
+
+
+/* 	    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        speed: 1000,
+        autoplay: {
+          delay: 3000,
+        },
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 80,
+          depth: 200,
+          modifier: 1,
+          slideShadows: false,
+        },
+
+        // Navigation arrows
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      }); */
+
+
 //(function(){
 	var AMOUNT = 200,
     d = 25,
@@ -117,8 +215,8 @@ $('body').scroll(function () {
     ro1 = 0,
     ro2 = 0,
     canvas = "#earth",
-    color = "#ffffff",
-    fogC = "#fff",
+    color = "#54c790",
+    fogC = "#54c790",
     T_earth = "https://mapplix.github.io/earth/earth.png";
 
 	var camera, scene, renderer;
@@ -204,7 +302,7 @@ varying float vBright;\n\
 	for ( var i = 0, l = position.count; i < l; i ++ ) {
 		var c =centers[i]= i % 3, j=(i-c)/3;
 		brights[i]=0;
-		if (i<vCount) points[i]={siblings:[], distances:[], indexes:[], brightness:0, v:0, a:1, f:0, dr:0, r:1};
+		if (i<vCount) points[i]={siblings:[], distances:[], indexes:[], brightness:0.5, v:0, a:1, f:0, dr:0, r:1};
 	}
 	function addSiblings(a,b,one){
 		if (points[a].siblings.indexOf(points[b])<0) {
@@ -260,7 +358,7 @@ varying float vBright;\n\
 	//camera.position.y=camera.position.z=2000
 
 	scene.fog=new THREE.Fog(fogC, posZ-R/2, posZ+R);
-	hLight = new THREE.HemisphereLight("#3452ff", 0, 25);
+	hLight = new THREE.HemisphereLight("#b7bbb9", 0, 25);
 	world.add(hLight);
 	hLight.position.set(0,0,1)
 
