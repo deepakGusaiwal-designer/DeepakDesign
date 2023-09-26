@@ -23,14 +23,15 @@
             </div>
             <p><span class="count">100</span>%</p>
         </div>
-        <main>
+        <main id="Bodycontent">
             <div id="scrollMore">
-                <div id="backToTop">
-                    <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 11L11 1L1 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-
-                </div>
+                <a href="#Bodycontent">
+                    <div id="backToTop">
+                        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 11L11 1L1 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </a>
                 <div class="circular-text">
                     <p class="text rotating">Scroll to Explore  ➊  Scroll to Explore ➊ </p>
                 </div>
@@ -40,7 +41,7 @@
                     <div class="logo-block">
                         <a href="#" class="hover-me">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1008 1008"><defs><style>.cls-1{fill:#0c1b14;}.cls-2{fill:#54c790;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="504" cy="504" r="504"/><path class="cls-2" d="M718.92,461.5V128H670.07V483.87h-.44c-4.52,87.74-77.14,157.46-166,157.28-90.62-.19-164.79-74-165.5-164.64C337.43,384.23,412,309.21,504,309.21a165.31,165.31,0,0,1,117.23,48.56V294.39a214.28,214.28,0,0,0-116.29-34.71c-118.71-.51-216,96.26-216.29,215-.28,119.25,96.24,216,215.35,216,118.93,0,215.35-96.49,215.35-215.5C719.35,470.58,719.2,466,718.92,461.5Z"/><path class="cls-2" d="M665.73,703.17A166,166,0,0,1,504.3,830.47a167.46,167.46,0,0,1-20.64-1.28V879c6.8.64,13.68,1,20.64,1a215.66,215.66,0,0,0,212-176.83Z"/></g></g></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1008 1008"><defs><style>.cls-1{fill:#26dbef;}.cls-2{fill:#0c1b14;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle class="cls-1" cx="504" cy="504" r="504"/><path class="cls-2" d="M718.92,461.5V128H670.07V483.87h-.44c-4.52,87.74-77.14,157.46-166,157.28-90.62-.19-164.79-74-165.5-164.64C337.43,384.23,412,309.21,504,309.21a165.31,165.31,0,0,1,117.23,48.56V294.39a214.28,214.28,0,0,0-116.29-34.71c-118.71-.51-216,96.26-216.29,215-.28,119.25,96.24,216,215.35,216,118.93,0,215.35-96.49,215.35-215.5C719.35,470.58,719.2,466,718.92,461.5Z"/><path class="cls-2" d="M665.73,703.17A166,166,0,0,1,504.3,830.47a167.46,167.46,0,0,1-20.64-1.28V879c6.8.64,13.68,1,20.64,1a215.66,215.66,0,0,0,212-176.83Z"/></g></g></svg>
                             </span>
                         </a>
                     </div>
@@ -54,6 +55,9 @@
                             </li>
                             <li>
                                 <a class="slide-vertical" href="#Skill" data-splitting>Skill</a>
+                            </li>
+                            <li>
+                                <a class="slide-vertical" href="#Testimonial" data-splitting>Testimonial</a>
                             </li>
                             <li>
                                 <a class="slide-vertical" href="#Contact" data-splitting>Contact</a>
@@ -87,7 +91,14 @@
                         </h1>
                     </div>
                 </div>
-                <canvas id="earth"></canvas>
+
+                <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.455/build/spline-viewer.js"></script>
+                <spline-viewer url="https://prod.spline.design/d1n9pcRhrEIClBg7/scene.splinecode" id="earthContainer"></spline-viewer>
+
+                <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.455/build/spline-viewer.js"></script>
+                <spline-viewer url="https://prod.spline.design/qQRLMClVBwyYci2y/scene.splinecode" id="earth"></spline-viewer> -->
+                
+                <!-- <canvas id="earth"></canvas> -->
             </div>
 
 
@@ -274,7 +285,7 @@
             </div>
 
 <div class="horizontal-scroll-container">
-  <div id="Testimonials" class="content work-section">
+  <div id="Testimonial" class="content work-section">
       <div class="work-experience">
           <div class="main-container">
               <div class="title-block">
@@ -1106,7 +1117,11 @@ function homeAnimation() {
       }
   });
 }
-homeAnimation();
+
+    if($(window).width() > 767) {
+        // $("#body-container .main-content").remove().insertBefore($("#body-container .left-sidebar"));
+        homeAnimation();
+    }
         </script>
     </body>
 </html>

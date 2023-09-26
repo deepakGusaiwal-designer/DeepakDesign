@@ -91,17 +91,16 @@ $(document).on('click', 'a[href^="#"]', function (event) {
     }, 1000);
 });
 
-$(document).ready(function () {
-  $("#backToTop").hide();
-});
-// var backToTop = $('.herozone').height();
-$('body').scroll(function () {
-  if (document.body.scrollTop > 929) {
-    $("#backToTop").show(200);
-  } else {
-    $("#backToTop").hide(200);
-  }
-});
+// $(document).ready(function () {
+//   $("#backToTop").hide();
+// });
+// $('body').scroll(function () {
+//   if (document.body.scrollTop < 929) {
+//     $("#backToTop").show(200);
+//   } else {
+//     $("#backToTop").hide(200);
+//   }
+// });
 
 
 
@@ -227,7 +226,7 @@ $('body').scroll(function () {
 	var mouseX = 0, mouseY = 0, x0, y0;
 	var lookAt=new THREE.Vector3(0, 0, 0), canvas=document.querySelector(canvas); 
 
-	renderer = new THREE.WebGLRenderer({alpha:true, antialias:true, canvas: canvas});//
+	renderer = new THREE.WebGLRenderer({alpha:true, antialias:true, canvas: canvas});
 	renderer.setSize( W, H );
 	//renderer.context.getExtension('OES_standard_derivatives');
 	camera = new THREE.PerspectiveCamera( 18, aspect, 1, 10000 );

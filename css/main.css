@@ -4,7 +4,7 @@
   --bodyColor: #0d0d0d;
   --HerozoneBG: #0d0d0d;
   --text-color: #474a4f;
-  --red: #54c790;
+  --red: #26dbef;
   --light-text: #6a6e71;
   --text-light: #b7bbb9;
 }
@@ -269,7 +269,7 @@ header span {
   transform: translateY(100%);
 }
 
-.page-ready #earth {
+.page-ready #earthContainer {
   animation: 1s ease 0s loaderHerozoneEarth 1;
   animation-delay: 0.1s;
 }
@@ -402,7 +402,7 @@ div#backToTop {
 .social-block a svg {
   width: 30px;
 }
-#earth {
+#earthContainer {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -413,12 +413,22 @@ div#backToTop {
   opacity: 1;
   z-index: -1;
 }
+#earthContainer:before {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #0d0d0d;
+  height: 40px;
+  width: 140px;
+  z-index: 9;
+}
 
 .grain-container {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.15);
   top: 0;
   left: 0;
   opacity: 0.8;
@@ -558,6 +568,10 @@ div#backToTop {
 }
 .work-row .work-mask-row .hide-mask-work {
   display: none;
+}
+.work-row .work-mask-row.mask-hover-content h6,
+.work-row .work-mask-row.mask-hover-content h4 {
+  color: var(--dark);
 }
 .work-row .work-mask-row.mask-hover-content .show-mask-work {
   display: none;
@@ -708,8 +722,19 @@ div#backToTop {
   padding-right: var(--spacing-lg);
   border-bottom: 1px solid rgba(184, 172, 153, 0.15);
 }
+@media (max-width: 1199px) {
+  #team-members {
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+}
 #team-members > div {
   min-width: 40%;
+}
+@media (max-width: 1199px) {
+  #team-members > div {
+    min-width: 100%;
+  }
 }
 #team-members > div .team-qoute-container {
   backdrop-filter: blur(5.6px);
