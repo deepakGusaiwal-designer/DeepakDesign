@@ -10,19 +10,21 @@
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
         <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.1.0/swiper-bundle.css" integrity="sha512-xXQQj99PFpHikerkvc6HrA+dFLC14dMyBh0eL8fCan9h3n8Uhxvq5Os8ysEvn3oTLWJTte9kl5FFEftf2KfyHA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/main.css" />
     </head>
     <body class="demo-2 loading">
+        <!-- <div class="cursor"></div>
+        <div class="cursor-follower"></div> -->
         <div class="grain-container">
             <div class="overlay-grain"></div>
         </div>
-        <div class="loader">
+        <!-- <div class="loader">
             <div class="grain-container">
                 <div class="overlay-grain"></div>
             </div>
             <p><span class="count">100</span>%</p>
-        </div>
+        </div> -->
         <main id="Bodycontent">
             <div id="scrollMore">
                 <a href="#Bodycontent">
@@ -57,7 +59,7 @@
                                 <a class="slide-vertical" href="#Skill" data-splitting>Skill</a>
                             </li>
                             <li>
-                                <a class="slide-vertical" href="#Testimonial" data-splitting>Testimonial</a>
+                                <a class="slide-vertical" href="#Testimonial" data-splitting>Testimonials</a>
                             </li>
                             <li>
                                 <a class="slide-vertical" href="#Contact" data-splitting>Contact</a>
@@ -219,10 +221,18 @@
             <div class="content">
                 <div class="text-container-sm discipline-text-container">
                     <h2 class="content__title" data-splitting data-effect29>
-                        <span class="font-upper">Discipline</span><br />
+                        <span class="font-upper">From</span><br />
+                        <span class="font-upper">DESIGN</span><br />
+                        <span class="font-upper">to</span><br />
+                        <span class="font-upper">CODE</span>
+                        <!-- <span class="font-upper">Innovative</span><br />
+                        <span class="font-upper">User-Centric</span><br />
+                        <span class="font-upper">Responsive</span><br />
+                        <span class="font-upper">Collaborative</span> -->
+                        <!-- <span class="font-upper">Discipline</span><br />
                         <span class="font-upper">above</span><br />
                         <span class="font-upper">Motivation</span><br />
-                        <span class="font-upper">Always</span>
+                        <span class="font-upper">Always</span> -->
                     </h2>
                     <!-- <h2 class="content__title content__title--left" data-splitting data-effect25>
                         <p class="font-small">
@@ -294,7 +304,7 @@
           </div>
       </div>
   </div>
-  <div class="horizontal-scroll" id="team-members">
+  <div class="horizontal-scroll slider-cards-js" id="team-members">
     <div class="marquee-item team-member">
         <div class="team-qoute-container">
             <div class="accordion">
@@ -539,7 +549,27 @@
                 </div>
             </div>
             
-            <div class="content work-section"></div>
+            <div class="content work-section emoji-section">
+                <div class="bottom-emoji-container">
+                    <ul id="emoji">
+                        <li class="layer" data-depth="0.2">
+                            <div class="face"></div>
+                        </li>
+                        <li class="layer" data-depth="0.3">
+                            <div class="shine"></div>
+                        </li>
+                        <li class="layer" data-depth="0.8">
+                            <div class="eye left"></div>
+                        </li>
+                        <li class="layer" data-depth="0.8">
+                            <div class="eye right"></div>
+                        </li>
+                        <li class="layer" data-depth="0.8">
+                            <div class="mouth"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </main>
         <script>
             // Preload images
@@ -558,16 +588,17 @@
         //     preloadFonts
         // };
     </script>
-        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/108/three.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js"></script> -->
         <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
         <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script> -->
         <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.1.0/swiper-bundle.js" integrity="sha512-swcQKxfguf5OP6XaY6gs7I0ErMcvpsZQUDsCPm8/bDbWLfRT6848WqvAHYcXXN4ijyS07nxTF6W2iOz/N73EYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/2.1.3/parallax.min.js"></script>
         <script src="js/main.js"></script>
         <script>
         Splitting();
@@ -1054,71 +1085,29 @@
             });
         };
 
-        // document.body.classList.remove('loading');
-        // Lenis (smooth scrolling)
         initSmoothScrolling();
         // GSAP Scroll Triggers
         scroll();
-        // Preload images and fonts
-        // preloadFonts('cvn8slu').then(() => {
-        //     // Remove loader (loading class)
-        // });
-
-        /*------------------------------
-        Init ScrollSmoother
-        ------------------------------*/
-        // const scrollerSmoother = ScrollSmoother.create({
-        // content: '#content',
-        // wrapper: '#wrapper',
-        // smooth: 1,
-        // effects: false,
-        // normalizeScroll: true
-        // })
-
-        // const tl = gsap.timeline({
-        // scrollTrigger: {
-        //     trigger: '.accordions',
-        //     pin: true,
-        //     start: '-150px',
-        //     end: 'bottom top',
-        //     scrub: .2,
-        //     ease: 'linear',
-        //     }
-        // })
-        // tl.to('.accordion', {
-        //     height: 0,
-        //     paddingBottom: 20,
-        //     marginBottom: -20,
-        //     paddingTop: 20,
-        //     stagger: 0,
-        //     stagger: .7,
-        //     background: 'rgba(0, 0, 0, 0.5)',
-        //     perspective: '1000px',
-        //     transform: `scaleY(1.4)`,
-        //     transform: `rotate(-45deg) skewX(-10px)`,
-        //     transform: `translate(${n2 * 200}px) rotate(${n2 * 270}deg) scale(${3 + n1 * 2}, ${3 + n2 * 2})`,
-        // }, '<')
 
 
-
-function homeAnimation() {
-  let teamMembers = gsap.utils.toArray(".team-member");
-  let scrollTween = gsap.to(teamMembers, {
-      xPercent: -100 * (teamMembers.length - 1),
-      ease: "ease",
-      immediateRender: false,
-      scrollTrigger: {
-          trigger: "#team-members",
-          pin: true,
-          scrub: 1,
-          start: "top 25%",
-          end: "+=4000",
-          markers: false
-      }
-  });
-}
-
+        
     if($(window).width() > 767) {
+        function homeAnimation() {
+          let teamMembers = gsap.utils.toArray(".team-member");
+          let scrollTween = gsap.to(teamMembers, {
+              xPercent: -100 * (teamMembers.length - 1),
+              ease: "ease",
+              immediateRender: false,
+              scrollTrigger: {
+                  trigger: "#team-members",
+                  pin: true,
+                  scrub: 1,
+                  start: "top 25%",
+                  end: "+=4000",
+                  markers: false
+              }
+          });
+        }
         // $("#body-container .main-content").remove().insertBefore($("#body-container .left-sidebar"));
         homeAnimation();
     }
