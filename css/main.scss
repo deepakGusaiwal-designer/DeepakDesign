@@ -1,10 +1,11 @@
 :root {
-    --primary-font: 'Plus Jakarta Sans', sans-serif;
+    // --primary-font: 'Plus Jakarta Sans', sans-serif;
+    --primary-font: "Rubik", sans-serif;
     --dark: #222629;
     --bodyColor: #0d0d0d;
     --HerozoneBG: #0d0d0d;
     --text-color: #474a4f;
-    --red: #26dbef;
+    --red: #FE4C6F;
     --light-text: #6a6e71;
     --text-light: #b7bbb9;
     // --red: #3452ff;
@@ -109,6 +110,7 @@ html {
 
 body {
     font-family: var(--primary-font);
+    font-optical-sizing: auto;
     background: var(--bodyColor);
     color: #fff;
     line-height: 1.5;
@@ -308,7 +310,8 @@ header {
         }
         h1 {
             font-size: 6rem;
-            line-height: 6rem;
+            line-height: 6.8rem;
+            font-weight: 300;
             div {
                 display: inline-block;
                 overflow: hidden;
@@ -333,6 +336,27 @@ header {
             text-transform: uppercase;
             font-weight: 400;
             margin-bottom: 30px;
+            font-variation-settings: 'wght' 100, 'wdth' 85;
+            .char {
+                --delay: calc((var(--char-index) + 1) * 400ms);
+                animation: breathe 4000ms infinite both;
+                animation-delay: var(--delay);
+            }
+        }
+        @keyframes breathe {
+            0% {
+                font-variation-settings: 'wght' 100, 'wdth' 85;
+                font-size: 1.2rem;
+            }
+            60% {
+                font-variation-settings: 'wght' 700, 'wdth' 100;
+                font-size: 1rem;
+            }
+            
+            100% {
+                font-variation-settings: 'wght' 100, 'wdth' 85;
+                font-size: 1.2rem;
+            }
         }
     }
 }
@@ -354,8 +378,7 @@ header {
         animation-delay: 0.1s;
     }
     .herozone-text-container {
-        h1,
-        h5 {
+        h1 {
            div {
                .char {
                    animation: 1.5s ease 0s loaderHerozone 1;
@@ -583,7 +606,7 @@ div#backToTop {
     display: flex;
     justify-content: center;
     h2 {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
         line-height: 4rem;
         font-weight: 400;
         color: #fff;
@@ -724,7 +747,7 @@ div#backToTop {
                 h4 {
                     font-size: 3rem;
                     line-height: normal;
-                    font-weight: 600;
+                    font-weight: 400;
                 }
                 .work-years {
                     width: 20%;
@@ -736,13 +759,14 @@ div#backToTop {
                     }
                     h5 {
                         font-size: 2.2rem;
-                        font-weight: 800;
+                        font-weight: 400;
                         line-height: normal;
                         margin-bottom: 10px;
+                        color: #fff;
                     }
                     h6 {
                         font-size: 1rem;
-                        font-weight: 300;
+                        font-weight: 500;
                         line-height: normal;
                     }
                 }
@@ -765,13 +789,15 @@ div#backToTop {
 
 .discipline-text-container {
     h2 {
-        font-size: 3vw;
+        font-size: 5vw;
         text-align: center;
-        font-weight: 800;
+        font-weight: 200;
         text-transform: uppercase;
-        letter-spacing: -0.1rem;
+        letter-spacing: 0.2rem;
+        line-height: 6vw;
         @media (max-width: 1199px) {
             font-size: 10vw;
+            line-height: 13vw;
             letter-spacing: 0;
             margin: 2em 0;
         }
@@ -795,7 +821,7 @@ div#backToTop {
         font-size: 4vw;
         line-height: normal;
         color : #fff;
-        font-weight: 800;
+        font-weight: 400;
         text-transform: uppercase;
         position: relative;
         text-decoration: none;
@@ -890,9 +916,18 @@ div#backToTop {
     overflow: hidden;
     color: #fff;
     transition: all 0.2s ease-in-out;
+    .title {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
     h4 {
         font-size: 2rem;
-        margin-bottom: 1rem;
+        // margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        font-weight: 400;
         span {
             font-size: 14px;
             font-weight: 600;
@@ -913,7 +948,7 @@ div#backToTop {
 .leftContentAvatar {
     margin-top: 15px;
     img {
-        --testimonialHeight: 100px;
+        --testimonialHeight: 70px;
         height: var(--testimonialHeight);
         width: var(--testimonialHeight);
         border-radius: var(--testimonialHeight);
@@ -931,8 +966,8 @@ div#backToTop {
     padding: 0;
     .qoute-block {
         // padding-left: 2rem;
-        font-size: 1rem;
-        line-height: 2;
+        font-size: 1.2rem;
+        line-height: 1.7;
         color: var(--text-light);
     }
 }
@@ -1012,7 +1047,7 @@ div#backToTop {
     justify-content: center;
 }
 
-$sunglow: #26dbef;
+$sunglow: #ffeb3b;
 $golden-brown: #151515;
 $raw-umber: #000000;
 $white: #FFFFFF;
