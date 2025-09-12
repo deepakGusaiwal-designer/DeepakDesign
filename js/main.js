@@ -84,7 +84,7 @@
   })();
 
 
-})(jQuery, window, document);
+
 
 
 const text = document.querySelector(".circular-text .text");
@@ -127,15 +127,15 @@ $(document).on("click", 'a[href^="#"]', function (event) {
 });
   
   
-      var options = {
-        invertX: false,
-        invertY: false,
-        limitX: 40,
-        limitY: 40,
-      };
+      // var options = {
+      //   invertX: false,
+      //   invertY: false,
+      //   limitX: 40,
+      //   limitY: 40,
+      // };
   
-      var emoji = document.getElementById("emoji");
-      var parallax = new Parallax(emoji, options);
+      // var emoji = document.getElementById("emoji");
+      // var parallax = new Parallax(emoji, options);
 
     const items = document.querySelectorAll(".work-row .work-mask-row");
     items.forEach((el) => {
@@ -183,6 +183,7 @@ $(document).on("click", 'a[href^="#"]', function (event) {
         innerImage.style.transform = "translateX(0%) rotate(0deg)";
       });
       document.addEventListener("mousemove", mousemovemethod);
+      
       (function ($) {
         var timeout;
         $(document).on("mousemove", function (event) {
@@ -190,9 +191,13 @@ $(document).on("click", 'a[href^="#"]', function (event) {
             window.clearTimeout(timeout);
           }
           timeout = window.setTimeout(function () {
-            // trigger the new event on event.target, so that it can bubble appropriately
             $(event.target).trigger("mousemoveend");
           }, 100);
         });
       })(jQuery);
     });
+
+    
+  console.clear();
+
+    })(jQuery, window, document);
