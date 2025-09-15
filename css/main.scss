@@ -757,32 +757,27 @@ div#backToTop {
     position: relative;
     .hover-shape-row {
       position: absolute;
-      content: "";
       height: 0;
       width: 100%;
       top: 50%;
       left: 0;
       transform: translateY(-50%);
       // background: var(--red), 0.5;
-      opacity: 0.9;
-      backdrop-filter: blur(20px);
-      filter: saturate(200%);
       transition: all 0.3s ease-in-out;
       pointer-events: none;
+      &:before {
+          content: '';
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          background: rgba(0, 0, 0, 0.7);
+          border-radius: 16px;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          -webkit-backdrop-filter: blur(12.4px);
+          backdrop-filter: blur(12.4px);
+          filter: saturate(200%);
+      }
     }
-    // &:after {
-    //     content: '';
-    //     position: absolute;
-    //     z-index: -1;
-    //     inset: 0;
-    //     border-radius: 30px;
-    //     -webkit-backdrop-filter: blur(0px);
-    //     backdrop-filter: blur(0px);
-    //     -webkit-filter: url(#container-glass);
-    //     filter: url(#container-glass);
-    //     overflow: hidden;
-    //     isolation: isolate;
-    // }
     .hide-mask-work {
       display: none;
     }
@@ -1146,7 +1141,8 @@ div#backToTop {
     // top:50%;
     // margin-left: -250px;
     // margin-top: -265px;
-    height: 555px;
+    height: 70dvh;
+    max-height: 600px;
     width: 400px;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;

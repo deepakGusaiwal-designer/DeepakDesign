@@ -626,18 +626,25 @@ div#backToTop {
 }
 .work-row .work-mask-row .hover-shape-row {
   position: absolute;
-  content: "";
   height: 0;
   width: 100%;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  opacity: 0.9;
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
-  filter: saturate(200%);
   transition: all 0.3s ease-in-out;
   pointer-events: none;
+}
+.work-row .work-mask-row .hover-shape-row:before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(12.4px);
+  backdrop-filter: blur(12.4px);
+  filter: saturate(200%);
 }
 .work-row .work-mask-row .hide-mask-work {
   display: none;
@@ -910,7 +917,8 @@ div#backToTop {
 #container {
   outline: 1px solid transparent;
   position: relative;
-  height: 555px;
+  height: 70dvh;
+  max-height: 600px;
   width: 400px;
   transform-style: preserve-3d;
   background: url("../img/card-bg.png") no-repeat;
